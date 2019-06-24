@@ -12,7 +12,50 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    
+				<testng.version>6.8.21</testng.version>
+		<selenium.version>3.0.0</selenium.version>
+		<surefire.version>2.18.1</surefire.version>
+		<ant.version>1.8.4</ant.version>
+		<maven.compiler.version>3.7.0</maven.compiler.version>
+		<poi.version>3.11</poi.version>
+		<com4j.version>2.1</com4j.version>
+		<jsch.version>0.1.51</jsch.version>
+		<extent.version>2.41.2</extent.version>
+		<json.version>20160810</json.version>
   </properties>
+  <build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.version}</version>
+				<configuration>
+					<verbose>true</verbose>
+					<fork>true</fork>
+					<executable>C:/Program Files/Java/jdk1.8.0_144/bin/javac</executable>
+					<compilerVersion>1.8</compilerVersion>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${surefire.version}</version>
+				<configuration>
+					<!-- This is to skip tests during normal maven execution (e.g. mvn package) 
+						and run them in integration-test -->
+				<!--	<skipTests>true</skipTests> 
+				commented to execute test case from server using like 
+				pom.xml clean install test -DsuiteXmlFile=testng\ReportingWirelessSalesRegression_Desktop.xml-->
+					<suiteXmlFiles>
+					<suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+					</suiteXmlFiles>
+					
+					<rerunFailingTestsCount>2</rerunFailingTestsCount>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
   <dependencies>
     <dependency>
